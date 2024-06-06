@@ -1,0 +1,34 @@
+Api
+--------------------------------------
+https://dashboard.stormglass.io/login
+rabotasmala@gmail.com
+rabotasmala
+
+API key
+b033086e-23fa-11ef-a49b-0242ac130004-b0330a08-23fa-11ef-a49b-0242ac130004
+
+
+
+
+
+   INFO  Personal access client created successfully.
+
+  Client ID ...................................................................................... 1
+  Client secret ........................................... zYyG0UaitMJSE1eBVCeQ9PCWg7oib5rmAdBockhu
+
+   INFO  Password grant client created successfully.
+
+  Client ID ...................................................................................... 2
+  Client secret ........................................... xvohkLMu0guIUpHcL7fDDLSJtfFpWj96MXvpRN1u
+
+
+
+  <h3 id="queue">Jobs</h3>
+  <p><code>sudo apt-get install php-pcntl</code></p>
+  <p>In your .env you have to add QUEUE_CONNECTION=database</p>
+  <p>You can setting up queues on server for example with screen:</p>
+  <p><code>screen -S screen_name</code> where screen_name - label of your trade screen console, then done command <code> php artisan queue:work</code> and click Ctrl+A then button "d", you will detach screen. To open detached screen again - just write this command <code>screen -r screen_name</code> and you will open trade command line.</p>
+  -------------------------
+  php artisan queue:table
+  php artisan migrate
+  QUEUE_CONNECTION=database
