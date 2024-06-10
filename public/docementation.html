@@ -1,0 +1,800 @@
+<html lang="ru">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Документация API Погоды</title>
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-21ACoFRt17cUeE8dckj2zMY+GYMnAt+JbGSoUeZeF8CohrJZgh1wVLzS3kBxG1RY" crossorigin="anonymous">
+
+    <style>
+        .prose {
+            --tw-prose-body: var(--text-primary);
+            --tw-prose-headings: var(--text-primary);
+            --tw-prose-lead: var(--text-primary);
+            --tw-prose-links: var(--text-primary);
+            --tw-prose-bold: var(--text-primary);
+            --tw-prose-counters: var(--text-primary);
+            --tw-prose-bullets: var(--text-primary);
+            --tw-prose-hr: var(--border-xheavy);
+            --tw-prose-quotes: var(--text-primary);
+            --tw-prose-quote-borders: #e5e7eb;
+            --tw-prose-captions: var(--text-secondary);
+            --tw-prose-code: var(--text-primary);
+            --tw-prose-pre-code: #e5e7eb;
+            --tw-prose-pre-bg: #1f2937;
+            --tw-prose-th-borders: #d1d5db;
+            --tw-prose-td-borders: #e5e7eb;
+            --tw-prose-invert-body: var(--text-primary);
+            --tw-prose-invert-headings: var(--text-primary);
+            --tw-prose-invert-lead: var(--text-primary);
+            --tw-prose-invert-links: var(--text-primary);
+            --tw-prose-invert-bold: var(--text-primary);
+            --tw-prose-invert-counters: var(--text-primary);
+            --tw-prose-invert-bullets: var(--text-primary);
+            --tw-prose-invert-hr: var(--border-xheavy);
+            --tw-prose-invert-quotes: var(--text-primary);
+            --tw-prose-invert-quote-borders: #374151;
+            --tw-prose-invert-captions: var(--text-secondary);
+            --tw-prose-invert-code: var(--text-primary);
+            --tw-prose-invert-pre-code: #d1d5db;
+            --tw-prose-invert-pre-bg: rgba(0, 0, 0, .5);
+            --tw-prose-invert-th-borders: #4b5563;
+            --tw-prose-invert-td-borders: #374151;
+            font-size: 1rem;
+            line-height: 1.75;
+        }
+
+        .markdown table {
+            --tw-border-spacing-x: 0px;
+            --tw-border-spacing-y: 0px;
+            border-collapse: separate;
+            border-spacing: var(--tw-border-spacing-x) var(--tw-border-spacing-y);
+            margin-bottom: .25rem;
+            margin-top: .25rem;
+            width: 100%;
+        }
+
+        .markdown td {
+            border-bottom-width: 1px;
+            border-color: rgba(0, 0, 0, .15);
+            border-color: var(--border-medium);
+            border-left-width: 1px;
+            padding: .25rem .75rem;
+        }
+
+        .markdown td:last-child {
+            border-right-width: 1px;
+        }
+
+        .prose :where(tbody td):not(:where([class~=not-prose] *)) {
+            vertical-align: baseline;
+        }
+
+        .prose :where(pre):not(:where([class~=not-prose] *)) {
+            background-color: transparent;
+            border-radius: .375rem;
+            color: currentColor;
+            font-size: .875em;
+            font-weight: 400;
+            line-height: 1.7142857;
+            margin: 0;
+            overflow-x: auto;
+            padding: 0;
+        }
+
+        code,
+        pre {
+            font-family: ui-monospace, SFMono-Regular, SF Mono, Menlo, Consolas, Liberation Mono, monospace !important;
+        }
+
+        .prose :where(tbody tr):not(:where([class~=not-prose] *)) {
+            border-bottom-color: var(--tw-prose-td-borders);
+            border-bottom-width: 1px;
+        }
+
+        .prose :where(tbody tr):not(:where([class~=not-prose] *)) {
+            border-bottom-color: var(--tw-prose-td-borders);
+            border-bottom-width: 1px;
+        }
+
+        .prose :where(thead):not(:where([class~=not-prose] *)) {
+            border-bottom-color: var(--tw-prose-th-borders);
+            border-bottom-width: 1px;
+        }
+
+        .bg-gray-950 {
+            --tw-bg-opacity: 1;
+            background-color: rgba(13, 13, 13, var(--tw-bg-opacity));
+        }
+
+        .text-token-text-secondary {
+            color: var(--text-secondary);
+        }
+
+        .overflow-y-auto {
+            overflow-y: auto;
+        }
+
+        code.hljs,
+        code[class*=language-],
+        pre[class*=language-] {
+            word-wrap: normal;
+            background: none;
+            color: #fff;
+            -webkit-hyphens: none;
+            hyphens: none;
+            line-height: 1.5;
+            tab-size: 4;
+            text-align: left;
+            white-space: pre;
+            word-break: normal;
+            word-spacing: normal;
+        }
+
+        *,
+        :after,
+        :before {
+            --tw-border-spacing-x: 0;
+            --tw-border-spacing-y: 0;
+            --tw-translate-x: 0;
+            --tw-translate-y: 0;
+            --tw-rotate: 0;
+            --tw-skew-x: 0;
+            --tw-skew-y: 0;
+            --tw-scale-x: 1;
+            --tw-scale-y: 1;
+            --tw-pan-x: ;
+            --tw-pan-y: ;
+            --tw-pinch-zoom: ;
+            --tw-scroll-snap-strictness: proximity;
+            --tw-gradient-from-position: ;
+            --tw-gradient-via-position: ;
+            --tw-gradient-to-position: ;
+            --tw-ordinal: ;
+            --tw-slashed-zero: ;
+            --tw-numeric-figure: ;
+            --tw-numeric-spacing: ;
+            --tw-numeric-fraction: ;
+            --tw-ring-inset: ;
+            --tw-ring-offset-width: 0px;
+            --tw-ring-offset-color: #fff;
+            --tw-ring-color: rgba(69, 89, 164, .5);
+            --tw-ring-offset-shadow: 0 0 transparent;
+            --tw-ring-shadow: 0 0 transparent;
+            --tw-shadow: 0 0 transparent;
+            --tw-shadow-colored: 0 0 transparent;
+            --tw-blur: ;
+            --tw-brightness: ;
+            --tw-contrast: ;
+            --tw-grayscale: ;
+            --tw-hue-rotate: ;
+            --tw-invert: ;
+            --tw-saturate: ;
+            --tw-sepia: ;
+            --tw-drop-shadow: ;
+            --tw-backdrop-blur: ;
+            --tw-backdrop-brightness: ;
+            --tw-backdrop-contrast: ;
+            --tw-backdrop-grayscale: ;
+            --tw-backdrop-hue-rotate: ;
+            --tw-backdrop-invert: ;
+            --tw-backdrop-opacity: ;
+            --tw-backdrop-saturate: ;
+            --tw-backdrop-sepia: ;
+            --tw-contain-size: ;
+            --tw-contain-layout: ;
+            --tw-contain-paint: ;
+            --tw-contain-style: ;
+        }
+
+
+        body {
+            margin: 20px;
+        }
+
+        table {
+            margin-top: 20px;
+        }
+
+        .table thead th {
+            background-color: #343a40;
+            color: white;
+        }
+
+        .table tbody tr:nth-child(even) {
+            background-color: #f8f9fa;
+        }
+
+        .table tbody tr:hover {
+            background-color: #e9ecef;
+        }
+        .p-4 {
+            padding: 15px;
+        }
+    </style>
+</head>
+
+<body>
+<div class="markdown prose w-full break-words dark:prose-invert light">
+    <h1>Документация API Погоды</h1>
+    <p>Этот API предоставляет доступ к данным о погоде. Здесь вы найдете документацию по методам, параметрам запросов и форматам ответов.</p>
+
+    <h2>Авторизация</h2>
+    <p>Для доступа к API необходимо получить токен авторизации. Используйте приведенные ниже шаги для получения токена и его использования в последующих запросах.</p>
+    <ul>
+        <li><strong>Тестовый пользователь:</strong> <code>{
+            "email": "test@example.com",
+            "password": "testtest"
+            }</code></li>
+    </ul>
+    <h3>Получение токена</h3>
+    <p>Для получения токена отправьте запрос на конечную точку <strong>/api/token</strong> с параметрами <strong>email</strong> и <strong>password</strong> в теле запроса:</p>
+
+    <p><strong>URL</strong>: <code>/api/token</code></p>
+    <p><strong>Метод</strong>: <code>POST</code></p>
+    <p><strong>Описание</strong>: Возвращает токен авторизации.</p>
+    <p><strong>Тело запроса</strong>:</p>
+    <pre><div class="dark bg-gray-950 rounded-md border-[0.5px] border-token-border-medium"><div class="overflow-y-auto p-4" dir="ltr"><code class="!whitespace-pre hljs language-bash">{
+    "email": "test@example.com",
+    "password": "testtest"
+}</code></div></div></pre>
+
+    <p><strong>Пример ответа</strong>:</p>
+    <pre><div class="dark bg-gray-950 rounded-md border-[0.5px] border-token-border-medium"><div class="overflow-y-auto p-4" dir="ltr"><code class="!whitespace-pre hljs language-bash">{
+    "success": true,
+    "token": "test_3d156eb7e37312d4196650dedb387ff4e8cf97dc78636cc02ed68a716a266a30"
+}</code></div></div></pre>
+
+    <h3>Использование токена</h3>
+    <p>После получения токена добавьте его в запросы к API в качестве параметра <code>token</code> в строке запроса.</p>
+    <h4>Пример запроса с токеном</h4>
+    <pre><div class="dark bg-gray-950 rounded-md border-[0.5px] border-token-border-medium"><div class="overflow-y-auto p-4" dir="ltr"><code class="!whitespace-pre hljs language-bash">GET http://example.com/api/weather/current?token=test_3d156eb7e37312d4196650dedb387ff4e8cf97dc78636cc02ed68a716a266a30</code></div></div></pre>
+    <h4>Описание параметров</h4>
+    <ul>
+        <li><strong>token</strong> (обязательный) — токен доступа, полученный из ответа на запрос <code>/api/token</code>.</li>
+    </ul>
+
+    <hr>
+    <h2>Методы</h2>
+    <h3>1. Получить все данные о погоде</h3>
+    <p><strong>URL</strong>: <code>/api/weather</code></p>
+    <p><strong>Метод</strong>: <code>GET</code></p>
+    <p><strong>Описание</strong>: Возвращает все доступные данные о погоде.</p>
+    <p><strong>Пример запроса</strong>:</p>
+    <pre><div class="dark bg-gray-950 rounded-md border-[0.5px] border-token-border-medium"><div class="overflow-y-auto p-4" dir="ltr"><code class="!whitespace-pre hljs language-bash">curl -X GET "http://example.com/api/weather?token={token}"
+</code></div></div></pre>
+    <p><strong>Пример ответа</strong>:</p>
+    <pre><div class="dark bg-gray-950 rounded-md border-[0.5px] border-token-border-medium"><div class="overflow-y-auto p-4" dir="ltr"><code class="!whitespace-pre hljs language-json"><span class="hljs-punctuation">[</span>
+  <span class="hljs-punctuation">{</span>
+    <span class="hljs-attr">"id"</span><span class="hljs-punctuation">:</span> <span class="hljs-number">1</span><span class="hljs-punctuation">,</span>
+    <span class="hljs-attr">"time"</span><span class="hljs-punctuation">:</span> <span class="hljs-string">"2024-06-01 08:00:00"</span><span class="hljs-punctuation">,</span>
+    <span class="hljs-attr">"air_temperature_noaa"</span><span class="hljs-punctuation">:</span> <span class="hljs-number">25.3</span><span class="hljs-punctuation">,</span>
+    <span class="hljs-attr">"air_temperature_sg"</span><span class="hljs-punctuation">:</span> <span class="hljs-number">26.1</span><span class="hljs-punctuation">,</span>
+    <span class="hljs-attr">"humidity_noaa"</span><span class="hljs-punctuation">:</span> <span class="hljs-number">70</span><span class="hljs-punctuation">,</span>
+    <span class="hljs-attr">"humidity_sg"</span><span class="hljs-punctuation">:</span> <span class="hljs-number">65</span><span class="hljs-punctuation">,</span>
+    <span class="hljs-attr">"pressure_noaa"</span><span class="hljs-punctuation">:</span> <span class="hljs-number">1015</span><span class="hljs-punctuation">,</span>
+    <span class="hljs-attr">"pressure_sg"</span><span class="hljs-punctuation">:</span> <span class="hljs-number">1016</span><span class="hljs-punctuation">,</span>
+    <span class="hljs-attr">"wind_direction_noaa"</span><span class="hljs-punctuation">:</span> <span class="hljs-number">180</span><span class="hljs-punctuation">,</span>
+    <span class="hljs-attr">"wind_direction_sg"</span><span class="hljs-punctuation">:</span> <span class="hljs-number">185</span><span class="hljs-punctuation">,</span>
+    <span class="hljs-attr">"wind_speed_noaa"</span><span class="hljs-punctuation">:</span> <span class="hljs-number">10</span><span class="hljs-punctuation">,</span>
+    <span class="hljs-attr">"wind_speed_sg"</span><span class="hljs-punctuation">:</span> <span class="hljs-number">11</span>
+  <span class="hljs-punctuation">}</span>
+  ...
+<span class="hljs-punctuation">]</span>
+</code></div></div></pre>
+    <p><strong>Описание параметров ответа</strong>:</p>
+    <table class="table table-striped table-bordered table-hover table-sm">
+        <thead>
+        <tr>
+            <th>Параметр</th>
+            <th>Тип</th>
+            <th>Описание</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr>
+            <td><code>id</code></td>
+            <td>Integer</td>
+            <td>Уникальный идентификатор записи</td>
+        </tr>
+        <tr>
+            <td><code>time</code></td>
+            <td>String</td>
+            <td>Время записи данных (формат <code>YYYY-MM-DD HH:MM:SS</code>)</td>
+        </tr>
+        <tr>
+            <td><code>air_temperature_noaa</code></td>
+            <td>Float</td>
+            <td>Температура воздуха по данным NOAA</td>
+        </tr>
+        <tr>
+            <td><code>air_temperature_sg</code></td>
+            <td>Float</td>
+            <td>Температура воздуха по данным SG</td>
+        </tr>
+        <tr>
+            <td><code>humidity_noaa</code></td>
+            <td>Integer</td>
+            <td>Влажность воздуха по данным NOAA (%)</td>
+        </tr>
+        <tr>
+            <td><code>humidity_sg</code></td>
+            <td>Integer</td>
+            <td>Влажность воздуха по данным SG (%)</td>
+        </tr>
+        <tr>
+            <td><code>pressure_noaa</code></td>
+            <td>Integer</td>
+            <td>Атмосферное давление по данным NOAA (hPa)</td>
+        </tr>
+        <tr>
+            <td><code>pressure_sg</code></td>
+            <td>Integer</td>
+            <td>Атмосферное давление по данным SG (hPa)</td>
+        </tr>
+        <tr>
+            <td><code>wind_direction_noaa</code></td>
+            <td>Integer</td>
+            <td>Направление ветра по данным NOAA (градусы)</td>
+        </tr>
+        <tr>
+            <td><code>wind_direction_sg</code></td>
+            <td>Integer</td>
+            <td>Направление ветра по данным SG (градусы)</td>
+        </tr>
+        <tr>
+            <td><code>wind_speed_noaa</code></td>
+            <td>Float</td>
+            <td>Скорость ветра по данным NOAA (м/с)</td>
+        </tr>
+        <tr>
+            <td><code>wind_speed_sg</code></td>
+            <td>Float</td>
+            <td>Скорость ветра по данным SG (м/с)</td>
+        </tr>
+        </tbody>
+    </table>
+    <h3>2. Получить последние данные о погоде</h3>
+    <p><strong>URL</strong>: <code>/api/weather/current</code></p>
+    <p><strong>Метод</strong>: <code>GET</code></p>
+    <p><strong>Описание</strong>: Возвращает последние доступные данные о погоде.</p>
+    <p><strong>Пример запроса</strong>:</p>
+    <pre><div class="dark bg-gray-950 rounded-md border-[0.5px] border-token-border-medium"><div class="overflow-y-auto p-4" dir="ltr"><code class="!whitespace-pre hljs language-bash">curl -X GET "http://example.com/api/weather/current?token={token}"
+</code></div></div></pre>
+    <p><strong>Пример ответа</strong>:</p>
+    <pre><div class="dark bg-gray-950 rounded-md border-[0.5px] border-token-border-medium"><div class="overflow-y-auto p-4" dir="ltr"><code class="!whitespace-pre hljs language-json"><span class="hljs-punctuation">{</span>
+  <span class="hljs-attr">"id"</span><span class="hljs-punctuation">:</span> <span class="hljs-number">10</span><span class="hljs-punctuation">,</span>
+  <span class="hljs-attr">"time"</span><span class="hljs-punctuation">:</span> <span class="hljs-string">"2024-06-08 14:00:00"</span><span class="hljs-punctuation">,</span>
+  <span class="hljs-attr">"air_temperature_noaa"</span><span class="hljs-punctuation">:</span> <span class="hljs-number">22.8</span><span class="hljs-punctuation">,</span>
+  <span class="hljs-attr">"air_temperature_sg"</span><span class="hljs-punctuation">:</span> <span class="hljs-number">23.0</span><span class="hljs-punctuation">,</span>
+  <span class="hljs-attr">"humidity_noaa"</span><span class="hljs-punctuation">:</span> <span class="hljs-number">68</span><span class="hljs-punctuation">,</span>
+  <span class="hljs-attr">"humidity_sg"</span><span class="hljs-punctuation">:</span> <span class="hljs-number">70</span><span class="hljs-punctuation">,</span>
+  <span class="hljs-attr">"pressure_noaa"</span><span class="hljs-punctuation">:</span> <span class="hljs-number">1012</span><span class="hljs-punctuation">,</span>
+  <span class="hljs-attr">"pressure_sg"</span><span class="hljs-punctuation">:</span> <span class="hljs-number">1013</span><span class="hljs-punctuation">,</span>
+  <span class="hljs-attr">"wind_direction_noaa"</span><span class="hljs-punctuation">:</span> <span class="hljs-number">190</span><span class="hljs-punctuation">,</span>
+  <span class="hljs-attr">"wind_direction_sg"</span><span class="hljs-punctuation">:</span> <span class="hljs-number">195</span><span class="hljs-punctuation">,</span>
+  <span class="hljs-attr">"wind_speed_noaa"</span><span class="hljs-punctuation">:</span> <span class="hljs-number">12</span><span class="hljs-punctuation">,</span>
+  <span class="hljs-attr">"wind_speed_sg"</span><span class="hljs-punctuation">:</span> <span class="hljs-number">13</span>
+<span class="hljs-punctuation">}</span>
+</code></div></div></pre>
+    <h3>3. Получить прогноз погоды</h3>
+    <p><strong>URL</strong>: <code>/api/weather/forecast</code></p>
+    <p><strong>Метод</strong>: <code>GET</code></p>
+    <p><strong>Описание</strong>: Возвращает прогноз погоды на указанное количество дней.</p>
+    <p><strong>Параметры запроса</strong>:</p>
+    <table class="table table-striped table-bordered table-hover table-sm">
+        <thead>
+        <tr>
+            <th>Параметр</th>
+            <th>Тип</th>
+            <th>Описание</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr>
+            <td><code>days</code></td>
+            <td>Integer</td>
+            <td>Количество дней для прогноза (по умолчанию 3)</td>
+        </tr>
+        </tbody>
+    </table>
+    <p><strong>Пример запроса</strong>:</p>
+    <pre><div class="dark bg-gray-950 rounded-md border-[0.5px] border-token-border-medium"><div class="overflow-y-auto p-4" dir="ltr"><code class="!whitespace-pre hljs language-bash">curl -X GET <span class="hljs-string">"http://example.com/api/weather/forecast?days=5&token={token}"</span>
+</code></div></div></pre>
+    <p><strong>Пример ответа</strong>:</p>
+    <pre><div class="dark bg-gray-950 rounded-md border-[0.5px] border-token-border-medium"><div class="overflow-y-auto p-4" dir="ltr"><code class="!whitespace-pre hljs language-json"><span class="hljs-punctuation">[</span>
+  <span class="hljs-punctuation">{</span>
+    <span class="hljs-attr">"id"</span><span class="hljs-punctuation">:</span> <span class="hljs-number">7</span><span class="hljs-punctuation">,</span>
+    <span class="hljs-attr">"time"</span><span class="hljs-punctuation">:</span> <span class="hljs-string">"2024-06-03 12:00:00"</span><span class="hljs-punctuation">,</span>
+    <span class="hljs-attr">"air_temperature_noaa"</span><span class="hljs-punctuation">:</span> <span class="hljs-number">24.0</span><span class="hljs-punctuation">,</span>
+    <span class="hljs-attr">"air_temperature_sg"</span><span class="hljs-punctuation">:</span> <span class="hljs-number">24.5</span><span class="hljs-punctuation">,</span>
+    <span class="hljs-attr">"humidity_noaa"</span><span class="hljs-punctuation">:</span> <span class="hljs-number">75</span><span class="hljs-punctuation">,</span>
+    <span class="hljs-attr">"humidity_sg"</span><span class="hljs-punctuation">:</span> <span class="hljs-number">72</span><span class="hljs-punctuation">,</span>
+    <span class="hljs-attr">"pressure_noaa"</span><span class="hljs-punctuation">:</span> <span class="hljs-number">1013</span><span class="hljs-punctuation">,</span>
+    <span class="hljs-attr">"pressure_sg"</span><span class="hljs-punctuation">:</span> <span class="hljs-number">1014</span><span class="hljs-punctuation">,</span>
+    <span class="hljs-attr">"wind_direction_noaa"</span><span class="hljs-punctuation">:</span> <span class="hljs-number">200</span><span class="hljs-punctuation">,</span>
+    <span class="hljs-attr">"wind_direction_sg"</span><span class="hljs-punctuation">:</span> <span class="hljs-number">205</span><span class="hljs-punctuation">,</span>
+    <span class="hljs-attr">"wind_speed_noaa"</span><span class="hljs-punctuation">:</span> <span class="hljs-number">9</span><span class="hljs-punctuation">,</span>
+    <span class="hljs-attr">"wind_speed_sg"</span><span class="hljs-punctuation">:</span> <span class="hljs-number">10</span>
+  <span class="hljs-punctuation">}</span><span class="hljs-punctuation">,</span>
+  ...
+<span class="hljs-punctuation">]</span>
+</code></div></div></pre>
+    <h3>4. Получить данные о погоде за определенный период</h3>
+    <p><strong>URL</strong>: <code>/api/weather/history</code></p>
+    <p><strong>Метод</strong>: <code>GET</code></p>
+    <p><strong>Описание</strong>: Возвращает данные о погоде за указанный период времени.</p>
+    <p><strong>Параметры запроса</strong>:</p>
+    <table class="table table-striped table-bordered table-hover table-sm">
+        <thead>
+        <tr>
+            <th>Параметр</th>
+            <th>Тип</th>
+            <th>Описание</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr>
+            <td><code>start_date</code></td>
+            <td>String</td>
+            <td>Начальная дата (формат <code>YYYY-MM-DD</code>)</td>
+        </tr>
+        <tr>
+            <td><code>end_date</code></td>
+            <td>String</td>
+            <td>Конечная дата (формат <code>YYYY-MM-DD</code>)</td>
+        </tr>
+        </tbody>
+    </table>
+    <p><strong>Пример запроса</strong>:</p>
+    <pre><div class="dark bg-gray-950 rounded-md border-[0.5px] border-token-border-medium"><div class="overflow-y-auto p-4" dir="ltr"><code class="!whitespace-pre hljs language-bash">curl -X GET <span class="hljs-string">"http://example.com/api/weather/history?start_date=2024-06-01&amp;end_date=2024-06-05&amp;token={token}"</span>
+</code></div></div></pre>
+    <p><strong>Пример ответа</strong>:</p>
+    <pre><div class="dark bg-gray-950 rounded-md border-[0.5px] border-token-border-medium"><div class="overflow-y-auto p-4" dir="ltr"><code class="!whitespace-pre hljs language-json"><span class="hljs-punctuation">[</span>
+  <span class="hljs-punctuation">{</span>
+    <span class="hljs-attr">"id"</span><span class="hljs-punctuation">:</span> <span class="hljs-number">2</span><span class="hljs-punctuation">,</span>
+    <span class="hljs-attr">"time"</span><span class="hljs-punctuation">:</span> <span class="hljs-string">"2024-06-02 10:00:00"</span><span class="hljs-punctuation">,</span>
+    <span class="hljs-attr">"air_temperature_noaa"</span><span class="hljs-punctuation">:</span> <span class="hljs-number">23.2</span><span class="hljs-punctuation">,</span>
+    <span class="hljs-attr">"air_temperature_sg"</span><span class="hljs-punctuation">:</span> <span class="hljs-number">23.8</span><span class="hljs-punctuation">,</span>
+    <span class="hljs-attr">"humidity_noaa"</span><span class="hljs-punctuation">:</span> <span class="hljs-number">72</span><span class="hljs-punctuation">,</span>
+    <span class="hljs-attr">"humidity_sg"</span><span class="hljs-punctuation">:</span> <span class="hljs-number">74</span><span class="hljs-punctuation">,</span>
+    <span class="hljs-attr">"pressure_noaa"</span><span class="hljs-punctuation">:</span> <span class="hljs-number">1014</span><span class="hljs-punctuation">,</span>
+    <span class="hljs-attr">"pressure_sg"</span><span class="hljs-punctuation">:</span> <span class="hljs-number">1015</span><span class="hljs-punctuation">,</span>
+    <span class="hljs-attr">"wind_direction_noaa"</span><span class="hljs-punctuation">:</span> <span class="hljs-number">170</span><span class="hljs-punctuation">,</span>
+    <span class="hljs-attr">"wind_direction_sg"</span><span class="hljs-punctuation">:</span> <span class="hljs-number">175</span><span class="hljs-punctuation">,</span>
+    <span class="hljs-attr">"wind_speed_noaa"</span><span class="hljs-punctuation">:</span> <span class="hljs-number">8</span><span class="hljs-punctuation">,</span>
+    <span class="hljs-attr">"wind_speed_sg"</span><span class="hljs-punctuation">:</span> <span class="hljs-number">9</span>
+  <span class="hljs-punctuation">}</span><span class="hljs-punctuation">,</span>
+  ...
+<span class="hljs-punctuation">]</span>
+</code></div></div></pre>
+    <h3>5. Получить данные о погоде за определенный час</h3>
+    <p><strong>URL</strong>: <code>/api/weather/hourly</code></p>
+    <p><strong>Метод</strong>: <code>GET</code></p>
+    <p><strong>Описание</strong>: Возвращает данные о погоде за указанный час.</p>
+    <p><strong>Параметры запроса</strong>:</p>
+    <table class="table table-striped table-bordered table-hover table-sm">
+        <thead>
+        <tr>
+            <th>Параметр</th>
+            <th>Тип</th>
+            <th>Описание</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr>
+            <td><code>date_time</code></td>
+            <td>String</td>
+            <td>Дата и время (формат <code>YYYY-MM-DD/HH</code>)</td>
+        </tr>
+        </tbody>
+    </table>
+    <p><strong>Пример запроса</strong>:</p>
+    <pre><div class="dark bg-gray-950 rounded-md border-[0.5px] border-token-border-medium"><div class="overflow-y-auto p-4" dir="ltr"><code class="!whitespace-pre hljs language-bash">curl -X GET <span class="hljs-string">"http://example.com/api/weather/hourly?date_time=2024-06-01/12&token={token}"</span>
+</code></div></div></pre>
+    <p><strong>Пример ответа</strong>:</p>
+    <pre><div class="dark bg-gray-950 rounded-md border-[0.5px] border-token-border-medium"><div class="overflow-y-auto p-4" dir="ltr"><code class="!whitespace-pre hljs language-json"><span class="hljs-punctuation">{</span>
+  <span class="hljs-attr">"id"</span><span class="hljs-punctuation">:</span> <span class="hljs-number">3</span><span class="hljs-punctuation">,</span>
+  <span class="hljs-attr">"time"</span><span class="hljs-punctuation">:</span> <span class="hljs-string">"2024-06-01 12:00:00"</span><span class="hljs-punctuation">,</span>
+  <span class="hljs-attr">"air_temperature_noaa"</span><span class="hljs-punctuation">:</span> <span class="hljs-number">22.5</span><span class="hljs-punctuation">,</span>
+  <span class="hljs-attr">"air_temperature_sg"</span><span class="hljs-punctuation">:</span> <span class="hljs-number">23.0</span><span class="hljs-punctuation">,</span>
+  <span class="hljs-attr">"humidity_noaa"</span><span class="hljs-punctuation">:</span> <span class="hljs-number">65</span><span class="hljs-punctuation">,</span>
+  <span class="hljs-attr">"humidity_sg"</span><span class="hljs-punctuation">:</span> <span class="hljs-number">67</span><span class="hljs-punctuation">,</span>
+  <span class="hljs-attr">"pressure_noaa"</span><span class="hljs-punctuation">:</span> <span class="hljs-number">1012</span><span class="hljs-punctuation">,</span>
+  <span class="hljs-attr">"pressure_sg"</span><span class="hljs-punctuation">:</span> <span class="hljs-number">1013</span><span class="hljs-punctuation">,</span>
+  <span class="hljs-attr">"wind_direction_noaa"</span><span class="hljs-punctuation">:</span> <span class="hljs-number">185</span><span class="hljs-punctuation">,</span>
+  <span class="hljs-attr">"wind_direction_sg"</span><span class="hljs-punctuation">:</span> <span class="hljs-number">190</span><span class="hljs-punctuation">,</span>
+  <span class="hljs-attr">"wind_speed_noaa"</span><span class="hljs-punctuation">:</span> <span class="hljs-number">10</span><span class="hljs-punctuation">,</span>
+  <span class="hljs-attr">"wind_speed_sg"</span><span class="hljs-punctuation">:</span> <span class="hljs-number">11</span>
+<span class="hljs-punctuation">}</span>
+</code></div></div></pre>
+    <h3>6. Получить средние значения погодных параметров за день</h3>
+    <p><strong>URL</strong>: <code>/api/weather/daily-averages</code></p>
+    <p><strong>Метод</strong>: <code>GET</code></p>
+    <p><strong>Описание</strong>: Возвращает средние значения погодных параметров за указанный день.</p>
+    <p><strong>Параметры запроса</strong>:</p>
+    <table class="table table-striped table-bordered table-hover table-sm">
+        <thead>
+        <tr>
+            <th>Параметр</th>
+            <th>Тип</th>
+            <th>Описание</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr>
+            <td><code>date</code></td>
+            <td>String</td>
+            <td>Дата (формат <code>YYYY-MM-DD</code>)</td>
+        </tr>
+        </tbody>
+    </table>
+    <p><strong>Пример запроса</strong>:</p>
+    <pre><div class="dark bg-gray-950 rounded-md border-[0.5px] border-token-border-medium"><div class="overflow-y-auto p-4" dir="ltr"><code class="!whitespace-pre hljs language-bash">curl -X GET <span class="hljs-string">"http://example.com/api/weather/daily-averages?date=2024-06-01&amp;token={token}"</span>
+</code></div></div></pre>
+    <p><strong>Пример ответа</strong>:</p>
+    <pre><div class="dark bg-gray-950 rounded-md border-[0.5px] border-token-border-medium"><div class="overflow-y-auto p-4" dir="ltr"><code class="!whitespace-pre hljs language-json"><span class="hljs-punctuation">{</span>
+  <span class="hljs-attr">"avg_air_temperature_noaa"</span><span class="hljs-punctuation">:</span> <span class="hljs-number">23.1</span><span class="hljs-punctuation">,</span>
+  <span class="hljs-attr">"avg_air_temperature_sg"</span><span class="hljs-punctuation">:</span> <span class="hljs-number">23.5</span><span class="hljs-punctuation">,</span>
+  <span class="hljs-attr">"avg_humidity_noaa"</span><span class="hljs-punctuation">:</span> <span class="hljs-number">70</span><span class="hljs-punctuation">,</span>
+  <span class="hljs-attr">"avg_humidity_sg"</span><span class="hljs-punctuation">:</span> <span class="hljs-number">72</span><span class="hljs-punctuation">,</span>
+  <span class="hljs-attr">"avg_pressure_noaa"</span><span class="hljs-punctuation">:</span> <span class="hljs-number">1013</span><span class="hljs-punctuation">,</span>
+  <span class="hljs-attr">"avg_pressure_sg"</span><span class="hljs-punctuation">:</span> <span class="hljs-number">1014</span><span class="hljs-punctuation">,</span>
+  <span class="hljs-attr">"avg_wind_direction_noaa"</span><span class="hljs-punctuation">:</span> <span class="hljs-number">180</span><span class="hljs-punctuation">,</span>
+  <span class="hljs-attr">"avg_wind_direction_sg"</span><span class="hljs-punctuation">:</span> <span class="hljs-number">185</span><span class="hljs-punctuation">,</span>
+  <span class="hljs-attr">"avg_wind_speed_noaa"</span><span class="hljs-punctuation">:</span> <span class="hljs-number">9</span><span class="hljs-punctuation">,</span>
+  <span class="hljs-attr">"avg_wind_speed_sg"</span><span class="hljs-punctuation">:</span> <span class="hljs-number">10</span>
+<span class="hljs-punctuation">}</span>
+</code></div></div></pre>
+    <h3>7. Получить среднюю температуру за период</h3>
+    <p><strong>URL</strong>: <code>/api/weather/average-temperature</code></p>
+    <p><strong>Метод</strong>: <code>GET</code></p>
+    <p><strong>Описание</strong>: Возвращает среднюю температуру за указанный период.</p>
+    <p><strong>Параметры запроса</strong>:</p>
+    <table class="table table-striped table-bordered table-hover table-sm">
+        <thead>
+        <tr>
+            <th>Параметр</th>
+            <th>Тип</th>
+            <th>Описание</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr>
+            <td><code>start_date</code></td>
+            <td>String</td>
+            <td>Начальная дата (формат <code>YYYY-MM-DD</code>)</td>
+        </tr>
+        <tr>
+            <td><code>end_date</code></td>
+            <td>String</td>
+            <td>Конечная дата (формат <code>YYYY-MM-DD</code>)</td>
+        </tr>
+        </tbody>
+    </table>
+    <p><strong>Пример запроса</strong>:</p>
+    <pre><div class="dark bg-gray-950 rounded-md border-[0.5px] border-token-border-medium"><div class="overflow-y-auto p-4" dir="ltr"><code class="!whitespace-pre hljs language-bash">curl -X GET <span class="hljs-string">"http://example.com/api/weather/average-temperature?start_date=2024-06-01&amp;end_date=2024-06-07&amp;token={token}"</span>
+</code></div></div></pre>
+    <p><strong>Пример ответа</strong>:</p>
+    <pre><div class="dark bg-gray-950 rounded-md border-[0.5px] border-token-border-medium"><div class="overflow-y-auto p-4" dir="ltr"><code class="!whitespace-pre hljs language-json"><span class="hljs-number">23.5</span>
+</code></div></div></pre>
+    <h3>8. Получить экстремальные температуры за период</h3>
+    <p><strong>URL</strong>: <code>/api/weather/temperature-extremes</code></p>
+    <p><strong>Метод</strong>: <code>GET</code></p>
+    <p><strong>Описание</strong>: Возвращает максимальную и минимальную температуры за указанный период.</p>
+    <p><strong>Параметры запроса</strong>:</p>
+    <table class="table table-striped table-bordered table-hover table-sm">
+        <thead>
+        <tr>
+            <th>Параметр</th>
+            <th>Тип</th>
+            <th>Описание</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr>
+            <td><code>start_date</code></td>
+            <td>String</td>
+            <td>Начальная дата (формат <code>YYYY-MM-DD</code>)</td>
+        </tr>
+        <tr>
+            <td><code>end_date</code></td>
+            <td>String</td>
+            <td>Конечная дата (формат <code>YYYY-MM-DD</code>)</td>
+        </tr>
+        </tbody>
+    </table>
+    <p><strong>Пример запроса</strong>:</p>
+    <pre><div class="dark bg-gray-950 rounded-md border-[0.5px] border-token-border-medium"><div class="overflow-y-auto p-4" dir="ltr"><code class="!whitespace-pre hljs language-bash">curl -X GET <span class="hljs-string">"http://example.com/api/weather/temperature-extremes?start_date=2024-06-01&amp;end_date=2024-06-07&amp;token={token}"</span>
+</code></div></div></pre>
+    <p><strong>Пример ответа</strong>:</p>
+    <pre><div class="dark bg-gray-950 rounded-md border-[0.5px] border-token-border-medium"><div class="overflow-y-auto p-4" dir="ltr"><code class="!whitespace-pre hljs language-json"><span class="hljs-punctuation">{</span>
+  <span class="hljs-attr">"max_temperature"</span><span class="hljs-punctuation">:</span> <span class="hljs-number">25.6</span><span class="hljs-punctuation">,</span>
+  <span class="hljs-attr">"min_temperature"</span><span class="hljs-punctuation">:</span> <span class="hljs-number">21.3</span>
+<span class="hljs-punctuation">}</span>
+</code></div></div></pre>
+    <h3>9. Получить среднюю скорость ветра за период</h3>
+    <p><strong>URL</strong>: <code>/api/weather/average-wind-speed</code></p>
+    <p><strong>Метод</strong>: <code>GET</code></p>
+    <p><strong>Описание</strong>: Возвращает среднюю скорость ветра за указанный период.</p>
+    <p><strong>Параметры запроса</strong>:</p>
+    <table class="table table-striped table-bordered table-hover table-sm">
+        <thead>
+        <tr>
+            <th>Параметр</th>
+            <th>Тип</th>
+            <th>Описание</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr>
+            <td><code>start_date</code></td>
+            <td>String</td>
+            <td>Начальная дата (формат <code>YYYY-MM-DD</code>)</td>
+        </tr>
+        <tr>
+            <td><code>end_date</code></td>
+            <td>String</td>
+            <td>Конечная дата (формат <code>YYYY-MM-DD</code>)</td>
+        </tr>
+        </tbody>
+    </table>
+    <p><strong>Пример запроса</strong>:</p>
+    <pre><div class="dark bg-gray-950 rounded-md border-[0.5px] border-token-border-medium"><div class="overflow-y-auto p-4" dir="ltr"><code class="!whitespace-pre hljs language-bash">curl -X GET <span class="hljs-string">"http://example.com/api/weather/average-wind-speed?start_date=2024-06-01&amp;end_date=2024-06-07&amp;token={token}"</span>
+</code></div></div></pre>
+    <p><strong>Пример ответа</strong>:</p>
+    <pre><div class="dark bg-gray-950 rounded-md border-[0.5px] border-token-border-medium"><div class="overflow-y-auto p-4" dir="ltr"><code class="!whitespace-pre hljs language-json"><span class="hljs-number">9.5</span>
+</code></div></div></pre>
+    <h3>10. Получить среднее давление за период</h3>
+    <p><strong>URL</strong>: <code>/api/weather/average-pressure</code></p>
+    <p><strong>Метод</strong>: <code>GET</code></p>
+    <p><strong>Описание</strong>: Возвращает среднее атмосферное давление за указанный период.</p>
+    <p><strong>Параметры запроса</strong>:</p>
+    <table class="table table-striped table-bordered table-hover table-sm">
+        <thead>
+        <tr>
+            <th>Параметр</th>
+            <th>Тип</th>
+            <th>Описание</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr>
+            <td><code>start_date</code></td>
+            <td>String</td>
+            <td>Начальная дата (формат <code>YYYY-MM-DD</code>)</td>
+        </tr>
+        <tr>
+            <td><code>end_date</code></td>
+            <td>String</td>
+            <td>Конечная дата (формат <code>YYYY-MM-DD</code>)</td>
+        </tr>
+        </tbody>
+    </table>
+    <p><strong>Пример запроса</strong>:</p>
+    <pre><div class="dark bg-gray-950 rounded-md border-[0.5px] border-token-border-medium"><div class="overflow-y-auto p-4" dir="ltr"><code class="!whitespace-pre hljs language-bash">curl -X GET <span class="hljs-string">"http://example.com/api/weather/average-pressure?start_date=2024-06-01&amp;end_date=2024-06-07&amp;token={token}"</span>
+</code></div></div></pre>
+    <p><strong>Пример ответа</strong>:</p>
+    <pre><div class="dark bg-gray-950 rounded-md border-[0.5px] border-token-border-medium"><div class="overflow-y-auto p-4" dir="ltr"><code class="!whitespace-pre hljs language-json"><span class="hljs-number">1013.5</span>
+</code></div></div></pre>
+    <h3>11. Получить среднюю влажность за период</h3>
+    <p><strong>URL</strong>: <code>/api/weather/average-humidity</code></p>
+    <p><strong>Метод</strong>: <code>GET</code></p>
+    <p><strong>Описание</strong>: Возвращает среднюю влажность за указанный период.</p>
+    <p><strong>Параметры запроса</strong>:</p>
+    <table class="table table-striped table-bordered table-hover table-sm">
+        <thead>
+        <tr>
+            <th>Параметр</th>
+            <th>Тип</th>
+            <th>Описание</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr>
+            <td><code>start_date</code></td>
+            <td>String</td>
+            <td>Начальная дата (формат <code>YYYY-MM-DD</code>)</td>
+        </tr>
+        <tr>
+            <td><code>end_date</code></td>
+            <td>String</td>
+            <td>Конечная дата (формат <code>YYYY-MM-DD</code>)</td>
+        </tr>
+        </tbody>
+    </table>
+    <p><strong>Пример запроса</strong>:</p>
+    <pre><div class="dark bg-gray-950 rounded-md border-[0.5px] border-token-border-medium"><div class="overflow-y-auto p-4" dir="ltr"><code class="!whitespace-pre hljs language-bash">curl -X GET <span class="hljs-string">"http://example.com/api/weather/average-humidity?start_date=2024-06-01&amp;end_date=2024-06-07&amp;token={token}"</span>
+</code></div></div></pre>
+    <p><strong>Пример ответа</strong>:</p>
+    <pre><div class="dark bg-gray-950 rounded-md border-[0.5px] border-token-border-medium"><div class="overflow-y-auto p-4" dir="ltr"><code class="!whitespace-pre hljs language-json"><span class="hljs-number">70</span>
+</code></div></div></pre>
+    <hr>
+    <h2>Структура данных</h2>
+    <p><strong>Основные поля в ответах:</strong></p>
+    <table class="table table-striped table-bordered table-hover table-sm">
+        <thead>
+        <tr>
+            <th>Поле</th>
+            <th>Тип</th>
+            <th>Описание</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr>
+            <td><code>id</code></td>
+            <td>Integer</td>
+            <td>Уникальный идентификатор записи</td>
+        </tr>
+        <tr>
+            <td><code>time</code></td>
+            <td>String</td>
+            <td>Время записи данных (формат <code>YYYY-MM-DD HH:MM:SS</code>)</td>
+        </tr>
+        <tr>
+            <td><code>air_temperature_noaa</code></td>
+            <td>Float</td>
+            <td>Температура воздуха по данным NOAA</td>
+        </tr>
+        <tr>
+            <td><code>air_temperature_sg</code></td>
+            <td>Float</td>
+            <td>Температура воздуха по данным SG</td>
+        </tr>
+        <tr>
+            <td><code>humidity_noaa</code></td>
+            <td>Integer</td>
+            <td>Влажность воздуха по данным NOAA (%)</td>
+        </tr>
+        <tr>
+            <td><code>humidity_sg</code></td>
+            <td>Integer</td>
+            <td>Влажность воздуха по данным SG (%)</td>
+        </tr>
+        <tr>
+            <td><code>pressure_noaa</code></td>
+            <td>Integer</td>
+            <td>Атмосферное давление по данным NOAA (hPa)</td>
+        </tr>
+        <tr>
+            <td><code>pressure_sg</code></td>
+            <td>Integer</td>
+            <td>Атмосферное давление по данным SG (hPa)</td>
+        </tr>
+        <tr>
+            <td><code>wind_direction_noaa</code></td>
+            <td>Integer</td>
+            <td>Направление ветра по данным NOAA (градусы)</td>
+        </tr>
+        <tr>
+            <td><code>wind_direction_sg</code></td>
+            <td>Integer</td>
+            <td>Направление ветра по данным SG (градусы)</td>
+        </tr>
+        <tr>
+            <td><code>wind_speed_noaa</code></td>
+            <td>Float</td>
+            <td>Скорость ветра по данным NOAA (м/с)</td>
+        </tr>
+        <tr>
+            <td><code>wind_speed_sg</code></td>
+            <td>Float</td>
+            <td>Скорость ветра по данным SG (м/с)</td>
+        </tr>
+        </tbody>
+    </table>
+    <hr>
+    <h2>Примечания</h2>
+    <ul>
+        <li>Формат времени в запросах и ответах должен быть в соответствии с UTC.</li>
+        <li>Параметры температур и скоростей ветра указаны в метрической системе (градусы Цельсия и метры в секунду).</li>
+        <li>Для всех запросов к API необходимо предоставить корректный авторизационный токен. Без токена доступ к API будет ограничен.</li>
+    </ul>
+    <hr>
+
+    </code></div></div></pre>
+</div>
+</body>
+
+</html>
